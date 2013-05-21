@@ -1,0 +1,192 @@
+Visita:
+    type: entity
+    table: visita
+    id:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        time:
+            type: string
+            length: 50
+            fixed: false
+            nullable: true
+        setor:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        consultor:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        dataRealizadaPlanejada:
+            type: datetime
+            nullable: true
+            column: data_realizada_planejada
+        dataEquipamento:
+            type: datetime
+            nullable: true
+            column: data_equipamento
+        dataServidor:
+            type: datetime
+            nullable: true
+            column: data_servidor
+        tipoPerfil:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: tipo_perfil
+        customerId:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: customer_id
+        crmCnpj:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: crm_cnpj
+        nome:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        especAtuacao:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: espec_atuacao
+        frequencia:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        visitaAcompanhada:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: visita_acompanhada
+        teamId:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: team_id
+        alignmentId:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: alignment_id
+        eventId:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: event_id
+        programadaNaoprog:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: programada_naoprog
+        tipoVisita:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: tipo_visita
+        eventType:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: event_type
+        painel:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        potencial:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        statusDaVisita:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: status_da_visita
+        produto1:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        produto2:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        produto3:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        produto4:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        produto5:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        produto6:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        comentarios:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        estado:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        comentarios1:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        comentarios2:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+    manyToOne:
+        planilha:
+            targetEntity: Planilha
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                planilha_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,162 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Visita</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ entity.time }}</td>
+            </tr>
+            <tr>
+                <th>Setor</th>
+                <td>{{ entity.setor }}</td>
+            </tr>
+            <tr>
+                <th>Consultor</th>
+                <td>{{ entity.consultor }}</td>
+            </tr>
+            <tr>
+                <th>Datarealizadaplanejada</th>
+                <td>{{ entity.dataRealizadaPlanejada|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dataequipamento</th>
+                <td>{{ entity.dataEquipamento|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dataservidor</th>
+                <td>{{ entity.dataServidor|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Tipoperfil</th>
+                <td>{{ entity.tipoPerfil }}</td>
+            </tr>
+            <tr>
+                <th>Customerid</th>
+                <td>{{ entity.customerId }}</td>
+            </tr>
+            <tr>
+                <th>Crmcnpj</th>
+                <td>{{ entity.crmCnpj }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ entity.nome }}</td>
+            </tr>
+            <tr>
+                <th>Especatuacao</th>
+                <td>{{ entity.especAtuacao }}</td>
+            </tr>
+            <tr>
+                <th>Frequencia</th>
+                <td>{{ entity.frequencia }}</td>
+            </tr>
+            <tr>
+                <th>Visitaacompanhada</th>
+                <td>{{ entity.visitaAcompanhada }}</td>
+            </tr>
+            <tr>
+                <th>Teamid</th>
+                <td>{{ entity.teamId }}</td>
+            </tr>
+            <tr>
+                <th>Alignmentid</th>
+                <td>{{ entity.alignmentId }}</td>
+            </tr>
+            <tr>
+                <th>Eventid</th>
+                <td>{{ entity.eventId }}</td>
+            </tr>
+            <tr>
+                <th>Programadanaoprog</th>
+                <td>{{ entity.programadaNaoprog }}</td>
+            </tr>
+            <tr>
+                <th>Tipovisita</th>
+                <td>{{ entity.tipoVisita }}</td>
+            </tr>
+            <tr>
+                <th>Eventtype</th>
+                <td>{{ entity.eventType }}</td>
+            </tr>
+            <tr>
+                <th>Painel</th>
+                <td>{{ entity.painel }}</td>
+            </tr>
+            <tr>
+                <th>Potencial</th>
+                <td>{{ entity.potencial }}</td>
+            </tr>
+            <tr>
+                <th>Statusdavisita</th>
+                <td>{{ entity.statusDaVisita }}</td>
+            </tr>
+            <tr>
+                <th>Produto1</th>
+                <td>{{ entity.produto1 }}</td>
+            </tr>
+            <tr>
+                <th>Produto2</th>
+                <td>{{ entity.produto2 }}</td>
+            </tr>
+            <tr>
+                <th>Produto3</th>
+                <td>{{ entity.produto3 }}</td>
+            </tr>
+            <tr>
+                <th>Produto4</th>
+                <td>{{ entity.produto4 }}</td>
+            </tr>
+            <tr>
+                <th>Produto5</th>
+                <td>{{ entity.produto5 }}</td>
+            </tr>
+            <tr>
+                <th>Produto6</th>
+                <td>{{ entity.produto6 }}</td>
+            </tr>
+            <tr>
+                <th>Comentarios</th>
+                <td>{{ entity.comentarios }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ entity.estado }}</td>
+            </tr>
+            <tr>
+                <th>Comentarios1</th>
+                <td>{{ entity.comentarios1 }}</td>
+            </tr>
+            <tr>
+                <th>Comentarios2</th>
+                <td>{{ entity.comentarios2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('visita') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('visita_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('visita_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

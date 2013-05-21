@@ -1,0 +1,259 @@
+<?php
+
+namespace Bbi\AbbotRx\VisitaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Visita
+ *
+ * @ORM\Table(name="visita")
+ * @ORM\Entity
+ */
+class Visita
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="time", type="string", length=50, nullable=true)
+     */
+    private $time;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="setor", type="string", length=45, nullable=true)
+     */
+    private $setor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="consultor", type="string", length=100, nullable=true)
+     */
+    private $consultor;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_realizada_planejada", type="datetime", nullable=true)
+     */
+    private $dataRealizadaPlanejada;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_equipamento", type="datetime", nullable=true)
+     */
+    private $dataEquipamento;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_servidor", type="datetime", nullable=true)
+     */
+    private $dataServidor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_perfil", type="string", length=45, nullable=true)
+     */
+    private $tipoPerfil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="customer_id", type="string", length=100, nullable=true)
+     */
+    private $customerId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="crm_cnpj", type="string", length=100, nullable=true)
+     */
+    private $crmCnpj;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=true)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="espec_atuacao", type="string", length=45, nullable=true)
+     */
+    private $especAtuacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="frequencia", type="string", length=45, nullable=true)
+     */
+    private $frequencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="visita_acompanhada", type="string", length=255, nullable=true)
+     */
+    private $visitaAcompanhada;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="team_id", type="string", length=45, nullable=true)
+     */
+    private $teamId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alignment_id", type="string", length=45, nullable=true)
+     */
+    private $alignmentId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="event_id", type="string", length=45, nullable=true)
+     */
+    private $eventId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="programada_naoprog", type="string", length=45, nullable=true)
+     */
+    private $programadaNaoprog;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_visita", type="string", length=45, nullable=true)
+     */
+    private $tipoVisita;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="event_type", type="string", length=45, nullable=true)
+     */
+    private $eventType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="painel", type="string", length=45, nullable=true)
+     */
+    private $painel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="potencial", type="string", length=45, nullable=true)
+     */
+    private $potencial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status_da_visita", type="string", length=45, nullable=true)
+     */
+    private $statusDaVisita;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="produto1", type="string", length=100, nullable=true)
+     */
+    private $produto1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="produto2", type="string", length=100, nullable=true)
+     */
+    private $produto2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="produto3", type="string", length=100, nullable=true)
+     */
+    private $produto3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="produto4", type="string", length=100, nullable=true)
+     */
+    private $produto4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="produto5", type="string", length=100, nullable=true)
+     */
+    private $produto5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="produto6", type="string", length=100, nullable=true)
+     */
+    private $produto6;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comentarios", type="string", length=255, nullable=true)
+     */
+    private $comentarios;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=45, nullable=true)
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comentarios1", type="string", length=255, nullable=true)
+     */
+    private $comentarios1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comentarios2", type="string", length=255, nullable=true)
+     */
+    private $comentarios2;
+
+    /**
+     * @var \Planilha
+     *
+     * @ORM\ManyToOne(targetEntity="Planilha")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="planilha_id", referencedColumnName="id")
+     * })
+     */
+    private $planilha;
+
+
+}

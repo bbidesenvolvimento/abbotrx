@@ -1,0 +1,53 @@
+<?php
+
+namespace Bbi\AbbotRx\VisitaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MunicipioSetor
+ *
+ * @ORM\Table(name="municipio_setor")
+ * @ORM\Entity
+ */
+class MunicipioSetor
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="setor_uf", type="string", length=45, nullable=true)
+     */
+    private $setorUf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="principais_regioes", type="string", length=100, nullable=true)
+     */
+    private $principaisRegioes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uf", type="string", length=45, nullable=true)
+     */
+    private $uf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_consultor", type="string", length=100, nullable=true)
+     */
+    private $nomeConsultor;
+
+
+}

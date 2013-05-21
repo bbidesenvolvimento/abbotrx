@@ -1,0 +1,4 @@
+bbi_abbot_rx:
+    resource: "@BbiAbbotRxBundle/Controller/"
+    type:     annotation
+    prefix:   /

@@ -1,0 +1,23 @@
+Planilha:
+    type: entity
+    table: planilha
+    id:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        local:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

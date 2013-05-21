@@ -287,7 +287,7 @@ class appDevDebugProjectContainer extends Container
         $b = new \Doctrine\DBAL\Configuration();
         $b->setSQLLogger($a);
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'symfony', 'host' => '127.0.0.1', 'port' => NULL, 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), $b, new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'abbot', 'host' => '127.0.0.1', 'port' => NULL, 'user' => 'root', 'password' => 'root', 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), $b, new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
     }
 
     /**
@@ -296,11 +296,11 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return EntityManager519a3951e9894_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager519a3951e9894_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
+     * @return EntityManager519be0f60d2f5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager519be0f60d2f5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        require_once '/var/www/abbotrx/app/cache/dev/jms_diextra/doctrine/EntityManager_519a3951e9894.php';
+        require_once '/var/www/abbotrx/app/cache/dev/jms_diextra/doctrine/EntityManager_519be0f60d2f5.php';
 
         $a = new \Doctrine\Common\Cache\ArrayCache();
         $a->setNamespace('sf2orm_default_90cf4b40c657acf094861edebe28ba25');
@@ -311,23 +311,26 @@ class appDevDebugProjectContainer extends Container
         $c = new \Doctrine\Common\Cache\ArrayCache();
         $c->setNamespace('sf2orm_default_90cf4b40c657acf094861edebe28ba25');
 
-        $d = new \Doctrine\ORM\Configuration();
-        $d->setEntityNamespaces(array());
-        $d->setMetadataCacheImpl($a);
-        $d->setQueryCacheImpl($b);
-        $d->setResultCacheImpl($c);
-        $d->setMetadataDriverImpl(new \Doctrine\ORM\Mapping\Driver\DriverChain());
-        $d->setProxyDir('/var/www/abbotrx/app/cache/dev/doctrine/orm/Proxies');
-        $d->setProxyNamespace('Proxies');
-        $d->setAutoGenerateProxyClasses(true);
-        $d->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
-        $d->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
-        $d->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
+        $d = new \Doctrine\ORM\Mapping\Driver\DriverChain();
+        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => '/var/www/abbotrx/src/Bbi/AbbotRx/VisitaBundle/Entity')), 'Bbi\\AbbotRx\\VisitaBundle\\Entity');
 
-        $e = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $d);
-        $this->get('doctrine.orm.default_manager_configurator')->configure($e);
+        $e = new \Doctrine\ORM\Configuration();
+        $e->setEntityNamespaces(array('BbiAbbotRxBundle' => 'Bbi\\AbbotRx\\VisitaBundle\\Entity'));
+        $e->setMetadataCacheImpl($a);
+        $e->setQueryCacheImpl($b);
+        $e->setResultCacheImpl($c);
+        $e->setMetadataDriverImpl($d);
+        $e->setProxyDir('/var/www/abbotrx/app/cache/dev/doctrine/orm/Proxies');
+        $e->setProxyNamespace('Proxies');
+        $e->setAutoGenerateProxyClasses(true);
+        $e->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
+        $e->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
+        $e->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
 
-        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager519a3951e9894_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+        $f = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $e);
+        $this->get('doctrine.orm.default_manager_configurator')->configure($f);
+
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager519be0f60d2f5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($f, $this);
     }
 
     /**
@@ -340,7 +343,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_Orm_DefaultManagerConfiguratorService()
     {
-        return $this->services['doctrine.orm.default_manager_configurator'] = new \Doctrine\Bundle\DoctrineBundle\ManagerConfigurator(array());
+        return $this->services['doctrine.orm.default_manager_configurator'] = new \Doctrine\Bundle\DoctrineBundle\ManagerConfigurator(array(), array());
     }
 
     /**
@@ -446,7 +449,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getForm_CsrfProviderService()
     {
-        return $this->services['form.csrf_provider'] = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\SessionCsrfProvider($this->get('session'), 'ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['form.csrf_provider'] = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\SessionCsrfProvider($this->get('session'), '62efbe1c428bd70010537c43a1053e04d6');
     }
 
     /**
@@ -2714,6 +2717,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/var/www/abbotrx/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
         $instance->addPath('/var/www/abbotrx/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('/var/www/abbotrx/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
+        $instance->addPath('/var/www/abbotrx/src/Bbi/AbbotRx/VisitaBundle/Resources/views', 'BbiAbbotRx');
         $instance->addPath('/var/www/abbotrx/src/Acme/DemoBundle/Resources/views', 'AcmeDemo');
         $instance->addPath('/var/www/abbotrx/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('/var/www/abbotrx/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
@@ -2745,7 +2749,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getUriSignerService()
     {
-        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('62efbe1c428bd70010537c43a1053e04d6');
     }
 
     /**
@@ -2814,6 +2818,174 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'xls.factory_pdf' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return PHPExcel_Writer_PDF A PHPExcel_Writer_PDF instance.
+     */
+    protected function getXls_FactoryPdfService()
+    {
+        return $this->services['xls.factory_pdf'] = call_user_func(array('PHPExcel_IOFactory', 'createWriter'), $this->get('xls.phpexcel'), 'PDF');
+    }
+
+    /**
+     * Gets the 'xls.factory_xls2007' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return PHPExcel_Writer_Excel2007 A PHPExcel_Writer_Excel2007 instance.
+     */
+    protected function getXls_FactoryXls2007Service()
+    {
+        return $this->services['xls.factory_xls2007'] = call_user_func(array('PHPExcel_IOFactory', 'createWriter'), $this->get('xls.phpexcel'), 'Excel2007');
+    }
+
+    /**
+     * Gets the 'xls.factory_xls5' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return PHPExcel_Writer_Excel5 A PHPExcel_Writer_Excel5 instance.
+     */
+    protected function getXls_FactoryXls5Service()
+    {
+        return $this->services['xls.factory_xls5'] = call_user_func(array('PHPExcel_IOFactory', 'createWriter'), $this->get('xls.phpexcel'), 'Excel5');
+    }
+
+    /**
+     * Gets the 'xls.load_xls2007' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return PHPExcel_Writer_Excel2007 A PHPExcel_Writer_Excel2007 instance.
+     */
+    protected function getXls_LoadXls2007Service()
+    {
+        return $this->services['xls.load_xls2007'] = call_user_func(array('PHPExcel_IOFactory', 'createReader'), 'Excel2007');
+    }
+
+    /**
+     * Gets the 'xls.load_xls5' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return PHPExcel_Writer_Excel5 A PHPExcel_Writer_Excel5 instance.
+     */
+    protected function getXls_LoadXls5Service()
+    {
+        return $this->services['xls.load_xls5'] = call_user_func(array('PHPExcel_IOFactory', 'createReader'), 'Excel5');
+    }
+
+    /**
+     * Gets the 'xls.phpexcel' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return PHPExcel A PHPExcel instance.
+     */
+    protected function getXls_PhpexcelService()
+    {
+        return $this->services['xls.phpexcel'] = new \PHPExcel();
+    }
+
+    /**
+     * Gets the 'xls.service_pdf' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liuggio\ExcelBundle\Service\ExcelContainer A Liuggio\ExcelBundle\Service\ExcelContainer instance.
+     */
+    protected function getXls_ServicePdfService()
+    {
+        return $this->services['xls.service_pdf'] = new \Liuggio\ExcelBundle\Service\ExcelContainer($this->get('xls.phpexcel'), $this->get('xls.stream_writer_output_pdf'), 'n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse\\StreamResponse');
+    }
+
+    /**
+     * Gets the 'xls.service_xls2007' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liuggio\ExcelBundle\Service\ExcelContainer A Liuggio\ExcelBundle\Service\ExcelContainer instance.
+     */
+    protected function getXls_ServiceXls2007Service()
+    {
+        return $this->services['xls.service_xls2007'] = new \Liuggio\ExcelBundle\Service\ExcelContainer($this->get('xls.phpexcel'), $this->get('xls.stream_writer_output_xls2007'), 'n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse\\StreamResponse');
+    }
+
+    /**
+     * Gets the 'xls.service_xls5' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Liuggio\ExcelBundle\Service\ExcelContainer A Liuggio\ExcelBundle\Service\ExcelContainer instance.
+     */
+    protected function getXls_ServiceXls5Service()
+    {
+        return $this->services['xls.service_xls5'] = new \Liuggio\ExcelBundle\Service\ExcelContainer($this->get('xls.phpexcel'), $this->get('xls.stream_writer_output_xls5'), 'n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse\\StreamResponse');
+    }
+
+    /**
+     * Gets the 'xls.stream_writer_output_pdf' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper A n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper instance.
+     */
+    protected function getXls_StreamWriterOutputPdfService()
+    {
+        $this->services['xls.stream_writer_output_pdf'] = $instance = new \n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper('php://output');
+
+        $instance->setWriter($this->get('xls.factory_pdf'), 'save');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'xls.stream_writer_output_xls2007' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper A n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper instance.
+     */
+    protected function getXls_StreamWriterOutputXls2007Service()
+    {
+        $this->services['xls.stream_writer_output_xls2007'] = $instance = new \n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper('php://output');
+
+        $instance->setWriter($this->get('xls.factory_xls2007'), 'save');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'xls.stream_writer_output_xls5' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper A n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper instance.
+     */
+    protected function getXls_StreamWriterOutputXls5Service()
+    {
+        $this->services['xls.stream_writer_output_xls5'] = $instance = new \n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterWrapper('php://output');
+
+        $instance->setWriter($this->get('xls.factory_xls5'), 'save');
+
+        return $instance;
+    }
+
+    /**
      * Gets the database_connection service alias.
      *
      * @return stdClass An instance of the doctrine.dbal.default_connection service
@@ -2836,7 +3008,7 @@ class appDevDebugProjectContainer extends Container
     /**
      * Gets the doctrine.orm.entity_manager service alias.
      *
-     * @return EntityManager519a3951e9894_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
+     * @return EntityManager519be0f60d2f5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
      */
     protected function getDoctrine_Orm_EntityManagerService()
     {
@@ -3211,6 +3383,8 @@ class appDevDebugProjectContainer extends Container
                 'JMSAopBundle' => 'JMS\\AopBundle\\JMSAopBundle',
                 'JMSDiExtraBundle' => 'JMS\\DiExtraBundle\\JMSDiExtraBundle',
                 'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
+                'BbiAbbotRxBundle' => 'Bbi\\AbbotRx\\VisitaBundle\\BbiAbbotRxBundle',
+                'LiuggioExcelBundle' => 'Liuggio\\ExcelBundle\\LiuggioExcelBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -3221,15 +3395,16 @@ class appDevDebugProjectContainer extends Container
             'database_driver' => 'pdo_mysql',
             'database_host' => '127.0.0.1',
             'database_port' => NULL,
-            'database_name' => 'symfony',
+            'database_name' => 'abbot',
             'database_user' => 'root',
-            'database_password' => NULL,
+            'database_password' => 'root',
             'mailer_transport' => 'smtp',
             'mailer_host' => '127.0.0.1',
             'mailer_user' => NULL,
             'mailer_password' => NULL,
             'locale' => 'en',
-            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'secret' => '62efbe1c428bd70010537c43a1053e04d6',
+            'database_path' => NULL,
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
@@ -3278,7 +3453,7 @@ class appDevDebugProjectContainer extends Container
             'debug.container.dump' => '/var/www/abbotrx/app/cache/dev/appDevDebugProjectContainer.xml',
             'debug.controller_resolver.class' => 'Symfony\\Component\\HttpKernel\\Controller\\TraceableControllerResolver',
             'debug.deprecation_logger_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\DeprecationLoggerListener',
-            'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'kernel.secret' => '62efbe1c428bd70010537c43a1053e04d6',
             'kernel.trusted_proxies' => array(
 
             ),
@@ -3698,8 +3873,8 @@ class appDevDebugProjectContainer extends Container
             'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
 
             ),
-            'jms_di_extra.doctrine_integration.entity_manager.file' => '/var/www/abbotrx/app/cache/dev/jms_diextra/doctrine/EntityManager_519a3951e9894.php',
-            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager519a3951e9894_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/var/www/abbotrx/app/cache/dev/jms_diextra/doctrine/EntityManager_519be0f60d2f5.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager519be0f60d2f5_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
             'security.secured_services' => array(
 
             ),
@@ -3742,6 +3917,15 @@ class appDevDebugProjectContainer extends Container
             'security.iddqd_aliases' => array(
 
             ),
+            'xls.phpexcel.class' => 'PHPExcel',
+            'xls.stream_writer.class' => 'n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse\\StreamWriterWrapper',
+            'xls.stream_response.class' => 'n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse\\StreamResponse',
+            'xls.factory.class' => 'PHPExcel_IOFactory',
+            'xls.factory5.method' => 'PHPExcel_Writer_Excel5',
+            'xls.factory2007.method' => 'PHPExcel_Writer_Excel2007',
+            'xls.factorypdf.method' => 'PHPExcel_Writer_PDF',
+            'xls.factory.write_method' => 'save',
+            'xls.service.class' => 'Liuggio\\ExcelBundle\\Service\\ExcelContainer',
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',

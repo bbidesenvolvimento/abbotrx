@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Visita list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Time</th>
+                <th>Setor</th>
+                <th>Consultor</th>
+                <th>Datarealizadaplanejada</th>
+                <th>Dataequipamento</th>
+                <th>Dataservidor</th>
+                <th>Tipoperfil</th>
+                <th>Customerid</th>
+                <th>Crmcnpj</th>
+                <th>Nome</th>
+                <th>Especatuacao</th>
+                <th>Frequencia</th>
+                <th>Visitaacompanhada</th>
+                <th>Teamid</th>
+                <th>Alignmentid</th>
+                <th>Eventid</th>
+                <th>Programadanaoprog</th>
+                <th>Tipovisita</th>
+                <th>Eventtype</th>
+                <th>Painel</th>
+                <th>Potencial</th>
+                <th>Statusdavisita</th>
+                <th>Produto1</th>
+                <th>Produto2</th>
+                <th>Produto3</th>
+                <th>Produto4</th>
+                <th>Produto5</th>
+                <th>Produto6</th>
+                <th>Comentarios</th>
+                <th>Estado</th>
+                <th>Comentarios1</th>
+                <th>Comentarios2</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('visita_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.time }}</td>
+                <td>{{ entity.setor }}</td>
+                <td>{{ entity.consultor }}</td>
+                <td>{% if entity.dataRealizadaPlanejada %}{{ entity.dataRealizadaPlanejada|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dataEquipamento %}{{ entity.dataEquipamento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dataServidor %}{{ entity.dataServidor|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.tipoPerfil }}</td>
+                <td>{{ entity.customerId }}</td>
+                <td>{{ entity.crmCnpj }}</td>
+                <td>{{ entity.nome }}</td>
+                <td>{{ entity.especAtuacao }}</td>
+                <td>{{ entity.frequencia }}</td>
+                <td>{{ entity.visitaAcompanhada }}</td>
+                <td>{{ entity.teamId }}</td>
+                <td>{{ entity.alignmentId }}</td>
+                <td>{{ entity.eventId }}</td>
+                <td>{{ entity.programadaNaoprog }}</td>
+                <td>{{ entity.tipoVisita }}</td>
+                <td>{{ entity.eventType }}</td>
+                <td>{{ entity.painel }}</td>
+                <td>{{ entity.potencial }}</td>
+                <td>{{ entity.statusDaVisita }}</td>
+                <td>{{ entity.produto1 }}</td>
+                <td>{{ entity.produto2 }}</td>
+                <td>{{ entity.produto3 }}</td>
+                <td>{{ entity.produto4 }}</td>
+                <td>{{ entity.produto5 }}</td>
+                <td>{{ entity.produto6 }}</td>
+                <td>{{ entity.comentarios }}</td>
+                <td>{{ entity.estado }}</td>
+                <td>{{ entity.comentarios1 }}</td>
+                <td>{{ entity.comentarios2 }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('visita_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('visita_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('visita_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

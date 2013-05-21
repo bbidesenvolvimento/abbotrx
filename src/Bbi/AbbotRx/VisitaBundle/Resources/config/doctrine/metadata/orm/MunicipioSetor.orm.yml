@@ -1,0 +1,36 @@
+MunicipioSetor:
+    type: entity
+    table: municipio_setor
+    id:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        setorUf:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+            column: setor_uf
+        principaisRegioes:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: principais_regioes
+        uf:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        nomeConsultor:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+            column: nome_consultor
+    lifecycleCallbacks: {  }
