@@ -1,7 +1,7 @@
-app/bootstrap.php.cache
-app/cache/
-app/logs/
-bin/
-vendor/
-web/bundles/
+ app/bootstrap.php.cache
+ app/cache/
+ app/logs/
+ bin/
+ vendor/
+ web/bundles/
 
